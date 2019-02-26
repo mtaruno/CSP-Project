@@ -1,6 +1,0 @@
-import java.util.*;
-
-public abstract class CSP {
-	protected ArrayList<Variable> var;
-	protected ArrayList<Constraint> constraints;
-}
