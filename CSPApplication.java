@@ -10,6 +10,7 @@ public class CSPApplication {
 		var.add(new Variable(4));
 		
 		CSPTest c = new CSPTest(var);
+		Solver s = new Solver(c);
 		
 	}
 }

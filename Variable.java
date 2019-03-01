@@ -12,7 +12,15 @@ public /*abstract*/ class Variable {
 		assignment = a;
 	}
 	
+	public void assign(int a) {
+		assignment = a;
+	}
+	
 	public int assignment() {
 		return assignment;
+	}
+	
+	public ArrayList<Integer> domain() {
+		return domain;
 	}
 }

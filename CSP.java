@@ -22,6 +22,15 @@ public abstract class CSP {
 		return true;
 	}
 	
+	public boolean isConsistent() {
+		for (Constraint c : constraints) {
+			if (!c.satisfied()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public ArrayList<Variable> var() {
 		return var;
 	}
