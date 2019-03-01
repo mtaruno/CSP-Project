@@ -8,3 +8,15 @@
 /CSPTest.class
 /RelationAus.class
 /Relation$RelationAus.class
+/AusVariable.class
+/AusRelation.class
+/AusCSP.class
+/CSP$AusCSP.class
+/JobCSP.class
+/JobRelation.class
+/PConstraint.class
+/PConstraint$DConstraint.class
+/DConstraint.class
+/PAxleConstraint.class
+/JobVariable.class
+/P.class

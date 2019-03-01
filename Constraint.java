@@ -4,9 +4,9 @@ public class Constraint {
 	Variable[] scope;
 	Relation rel;
 	
-	public Constraint(Relation r, int consistencyType) {
+	public Constraint(Relation r, Variable[] sc) {
 		rel = r;
-		scope = new Variable[consistencyType];
+		scope = sc;
 	}
 	
 	public boolean satisfied() {
@@ -14,3 +14,4 @@ public class Constraint {
 	}
 	
 }
+

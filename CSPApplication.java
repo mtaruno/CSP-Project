@@ -4,13 +4,10 @@ public class CSPApplication {
 	
 	public static void main(String[] args) {
 		
-		ArrayList<Variable> var = new ArrayList<Variable>();
-		var.add(new Variable(2));
-		var.add(new Variable(3));
-		var.add(new Variable(4));
-		
-		CSPTest c = new CSPTest(var);
-		Solver s = new Solver(c);
+		AusCSP aus = new AusCSP();
+		Solver solve = new Solver(aus);
+		solve.backTracking(aus);
+		System.out.println(aus.toString());
 		
 	}
 }
