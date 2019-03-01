@@ -49,9 +49,13 @@ class JobVariable extends Variable {
 	private int duration;
 	
 	private String[] taskKey = {"Axle", "Wheel", "Nuts", "Cap", "Inspect"};
-	private String[] sideKey = {"F", "B", "R", "L"};
+	private String[] sideKey = {"F", "B", "LF", "LB", "RF", "RB", ""};
 	
 	public JobVariable(int t, int s) {
+		domain = new ArrayList<Integer>();
+		for (int i = 1; i < 28; i++) { // 27 values
+			domain.add(i);
+		}
 		task = t;
 		side = s;
 		switch(task) {
