@@ -20,8 +20,8 @@ class AusRelation extends Relation {
 class PConstraint extends Relation {
 	@Override
 	public boolean test(Variable[] scope) {
-		JobVariable p1 = (JobVariable)scope[0];
-		JobVariable p2 = (JobVariable)scope[1];
+		JobVariable p1 = (JobVariable) scope[0];
+		JobVariable p2 = (JobVariable) scope[1];
 		if (p1.assignment() < 0 || p2.assignment() < 0) {
 			return true;
 		}
@@ -33,9 +33,10 @@ class PConstraint extends Relation {
 }
 
 class DConstraint extends Relation {
+	@Override
 	public boolean test(Variable[] scope) {
-		JobVariable p1 = (JobVariable)scope[0];
-		JobVariable p2 = (JobVariable)scope[1];
+		JobVariable p1 = (JobVariable) scope[0];
+		JobVariable p2 = (JobVariable) scope[1];
 		if (p1.assignment() < 0 || p2.assignment() < 0) {
 			return true;
 		}
@@ -44,4 +45,109 @@ class DConstraint extends Relation {
 		}
 		return false;
 	}
+}
+
+class QRelation extends Relation {
+	@Override
+	public boolean test(Variable[] scope) {
+		QueenVariable queen = (QueenVariable) scope[0];
+		int[][] board = queen.getBoard();
+		int counter = 0;
+		// Horizontal check
+		for (int i = 0; i < 8; i++) {
+			if (board[queen.getRow()][i] == 1) {
+				counter += 1;
+				if (counter != 1) {
+					return false;
+				} else {
+					System.out.println("Qs at row " + queen.getRow() + " is " + counter);
+				}
+			}
+		}
+		counter = 0;
+
+		try {
+			int row = queen.getRow();
+			int column = queen.assignment();
+
+			while (true) {
+
+				if (board[row][column] == 1) {
+					counter += 1;
+					if (counter > 1) {
+						return false;
+					}
+				}
+				row++;
+				column++;
+			}
+
+		} catch (ArrayIndexOutOfBoundsException e) {
+		}
+		counter = 0;
+		try {
+			int row = queen.getRow();
+			int column = queen.assignment();
+			while (true) {
+
+				if (board[row][column] == 1) {
+					counter += 1;
+					if (counter > 1) {
+						return false;
+					}
+				}
+				row--;
+				column--;
+			}
+		} catch (ArrayIndexOutOfBoundsException e) {
+		}
+		
+		counter = 0;
+		
+		try {
+			int row = queen.getRow();
+			int column = queen.assignment();
+
+			while (true) {
+
+				if (board[row][column] == 1) {
+					counter += 1;
+					if (counter > 1) {
+						return false;
+					}
+				}
+				row++;
+				column--;
+			}
+
+		} catch (ArrayIndexOutOfBoundsException e) {
+		}
+		
+		counter = 0;
+		
+		try {
+			int row = queen.getRow();
+			int column = queen.assignment();
+
+			while (true) {
+				if (board[row][column] == 1) {
+					counter += 1;
+					if (counter > 1) {
+						return false;
+					}
+				}
+				row--;
+				column++;
+			}
+
+		} catch (ArrayIndexOutOfBoundsException e) {
+		}
+		
+		// Vertical check not needed
+		// Down Diagonal check
+		// Up Diagonal check
+
+		return true;
+	}
+
 }

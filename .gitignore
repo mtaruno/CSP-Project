@@ -20,3 +20,6 @@
 /PAxleConstraint.class
 /JobVariable.class
 /P.class
+/QRelation.class
+/QueenVariable.class
+/QueenCSP.class

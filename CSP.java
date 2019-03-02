@@ -33,7 +33,7 @@ public abstract class CSP {
 }
 
 class AusCSP extends CSP {
-	
+
 	AusVariable WA = new AusVariable("WA");
 	AusVariable NT = new AusVariable("NT");
 	AusVariable NSW = new AusVariable("NSW");
@@ -41,17 +41,17 @@ class AusCSP extends CSP {
 	AusVariable SA = new AusVariable("SA");
 	AusVariable T = new AusVariable("T");
 	AusVariable V = new AusVariable("V");
-	
-	Variable[] v0 = {WA, SA};
-	Variable[] v1 = {WA, NT};
-	Variable[] v2 = {NT, SA};
-	Variable[] v3 = {NT, Q};
-	Variable[] v4 = {SA, Q};
-	Variable[] v5 = {SA, NSW};
-	Variable[] v6 = {SA, V};
-	Variable[] v7 = {Q, NSW};
-	Variable[] v8 = {NSW, V};
-	
+
+	Variable[] v0 = { WA, SA };
+	Variable[] v1 = { WA, NT };
+	Variable[] v2 = { NT, SA };
+	Variable[] v3 = { NT, Q };
+	Variable[] v4 = { SA, Q };
+	Variable[] v5 = { SA, NSW };
+	Variable[] v6 = { SA, V };
+	Variable[] v7 = { Q, NSW };
+	Variable[] v8 = { NSW, V };
+
 	public AusCSP() {
 		var = new ArrayList<Variable>();
 		var.add(WA);
@@ -61,11 +61,11 @@ class AusCSP extends CSP {
 		var.add(SA);
 		var.add(T);
 		var.add(V);
-		
+
 		rel = new AusRelation();
-		
+
 		constraints = new ArrayList<Constraint>();
-		
+
 		constraints.add(new Constraint(rel, v0));
 		constraints.add(new Constraint(rel, v1));
 		constraints.add(new Constraint(rel, v2));
@@ -95,7 +95,7 @@ class AusCSP extends CSP {
 }
 
 class JobCSP extends CSP {
-	
+
 	JobVariable AF = new JobVariable(0, 0);
 	JobVariable AB = new JobVariable(0, 1);
 	JobVariable WLF = new JobVariable(1, 2);
@@ -111,22 +111,21 @@ class JobCSP extends CSP {
 	JobVariable CRF = new JobVariable(3, 4);
 	JobVariable CRB = new JobVariable(3, 5);
 	JobVariable Ins = new JobVariable(4, 6);
-	
-	Variable[] p0 = {AF, WRF};
-	Variable[] p1 = {AF, WLF};
-	Variable[] p2 = {AB, WRB};
-	Variable[] p3 = {AB, WLB};
-	Variable[] p4 = {WRF, NRF};
-	Variable[] p5 = {WLF, NLF};
-	Variable[] p6 = {WRB, NRB};
-	Variable[] p7 = {WLB, NLB};
-	Variable[] p8 = {NRF, CRF};
-	Variable[] p9 = {NLF, CLF};
-	Variable[] p10 = {NRB, CRB};
-	Variable[] p11 = {NLB, CLB};
-	Variable[] d0 = {AF, AB};
-	
-	
+
+	Variable[] p0 = { AF, WRF };
+	Variable[] p1 = { AF, WLF };
+	Variable[] p2 = { AB, WRB };
+	Variable[] p3 = { AB, WLB };
+	Variable[] p4 = { WRF, NRF };
+	Variable[] p5 = { WLF, NLF };
+	Variable[] p6 = { WRB, NRB };
+	Variable[] p7 = { WLB, NLB };
+	Variable[] p8 = { NRF, CRF };
+	Variable[] p9 = { NLF, CLF };
+	Variable[] p10 = { NRB, CRB };
+	Variable[] p11 = { NLB, CLB };
+	Variable[] d0 = { AF, AB };
+
 	public JobCSP() {
 		var = new ArrayList<Variable>();
 		var.add(CRB);
@@ -143,12 +142,12 @@ class JobCSP extends CSP {
 		var.add(WLB);
 		var.add(AB);
 		var.add(AF);
-		
+
 		rel = new PConstraint();
 		Relation rel2 = new DConstraint();
-		
+
 		constraints = new ArrayList<Constraint>();
-		
+
 		constraints.add(new Constraint(rel, p0));
 		constraints.add(new Constraint(rel, p1));
 		constraints.add(new Constraint(rel, p2));
@@ -162,8 +161,9 @@ class JobCSP extends CSP {
 		constraints.add(new Constraint(rel, p10));
 		constraints.add(new Constraint(rel, p11));
 		constraints.add(new Constraint(rel2, d0));
-			
+
 	}
+
 	@Override
 	public String toString() {
 		String answer = "Answer: \n";
@@ -174,5 +174,19 @@ class JobCSP extends CSP {
 		}
 		return answer;
 	}
-		
+}
+
+class QueenCSP extends CSP {
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
