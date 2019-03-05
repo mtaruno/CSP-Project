@@ -35,7 +35,7 @@ public class Solver {
 		// Values are initialized to -1 as unassigned.
 		// Values can range from 0 to 2, 1 to 27, 0 to 7 depending on different CSP
 		// problems.
-
+ 
 		for (int temp : v.domain()) { // Loop through values in the variable's domain
 			v.assign(temp); // Assign the variable with the selected value to check consistency
 
