@@ -222,64 +222,62 @@ class JobCSP extends CSP {
 
 // 8-queen
 class QueenCSP extends CSP {
-
-	QueenVariable q1 = new QueenVariable(0);
-	QueenVariable q2 = new QueenVariable(1);
-	QueenVariable q3 = new QueenVariable(2);
-	QueenVariable q4 = new QueenVariable(3);
-	QueenVariable q5 = new QueenVariable(4);
-	QueenVariable q6 = new QueenVariable(5);
-	QueenVariable q7 = new QueenVariable(6);
-	QueenVariable q8 = new QueenVariable(7);
-
-	ArrayList<QueenVariable> qCount; // ArrayList to store number of queens according to the specificed n-queen
-										// problem
-
+	private static final int maxQueen = 24; // Maximum number of queens for the problem
+	private int nQueen = 0; // Number of queens involved in the problem
+							// Given by user input
+	private QueenVariable queen; // Queen variable
+	
+	
+	// Counstructor
 	public QueenCSP() {
 
-		qCount = new ArrayList<QueenVariable>();
-		qCount.add(q1);
-		qCount.add(q2);
-		qCount.add(q3);
-		qCount.add(q4);
-		qCount.add(q5);
-		qCount.add(q6);
-		qCount.add(q7);
-		qCount.add(q8);
-
+		// Initalize set of variables
 		var = new ArrayList<Variable>();
-
+		// Create scanner to read input
 		Scanner sc = new Scanner(System.in); // Get input for n-queen problem
+		// Ask for input
 		System.out.println("How many queens do you want for the n-queen problem?");
-		int n = sc.nextInt();
-		if (n > 8) {
+		nQueen = sc.nextInt(); // Read user input
+
+		if (nQueen > maxQueen) { // If bigger than the maximum number of queens
 			System.out.println("Error choosing number of queens!");
 			sc.close();
 			return;
 		}
 		
-		Variable[][] scope = new Variable[8][1];  // To satisfy the parameter of constraint method
-		rel = new QRelation();
-		constraints = new ArrayList<Constraint>();
+		// Create 2D array scope to store all the involved scopes in a big array.
+		Variable[][] scope = new Variable[nQueen][1]; // To satisfy the parameter of constraint method
+		rel = new QRelation(); // Initialize relation. In this case the only relation involved is QRelation
+		constraints = new ArrayList<Constraint>(); // Initialize constraints
+		// In our implementation, there are only unary constraints
+
+		// Add variables and constraints until it reaches the given number of queens
 		
-		for (int i = 0; i < n; i++) {
-			var.add(qCount.get(i));
-			scope[i][0] = qCount.get(i);
+		for (int i = 0; i < nQueen; i++) {
+			queen = new QueenVariable(i, nQueen); // Create queen objects
+			var.add(queen);
+			scope[i][0] = queen;
 			constraints.add(new Constraint(rel, scope[i]));
 		}
-		
+
 		sc.close();
 
 	}
 
 	@Override
 	public String problem() { // UC
-		return "n-Queens problem";
+		if (nQueen > maxQueen) {
+			return "Error number of queens";
+		}
+		return nQueen + "-Queens problem";
 	}
 
 	@Override
 	public String toString() {
-		return q1.toString();
+		if (nQueen > maxQueen) {
+			return "Error";
+		}
+		return queen.toString(); // Call the toString method from QueenVariable class
 	}
 
 }

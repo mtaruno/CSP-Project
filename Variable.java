@@ -1,3 +1,4 @@
+
 /*
  * CSC 242 Project 2: Constraint Satisfaction
  * Group members: Linzan Ye, Matthew Taruno
@@ -108,50 +109,68 @@ class JobVariable extends Variable {
 class QueenVariable extends Variable {
 	private int row;
 	private static int[][] board;
+	private static int nQueen = 8;
+	private static final int maxQueen = 24;
 
-	public QueenVariable(int row) {
+	public QueenVariable(int row, int num) {
+
+		if (num > maxQueen) {
+			return;
+		} else { // Ignore cases bigger than 30 UC
+			board = new int[num][num];
+		}
+
 		this.row = row;
 		domain = new ArrayList<Integer>();
-		for (int i = 0; i < 8; i++) {
+
+		for (int i = 0; i < board.length; i++) {
 			domain.add(i);
 		}
-		board = new int[8][8];
+		nQueen = num;
 	}
-	
+
 	@Override
 	public void assign(int a) {
-		if(a > 7) {
+		if (a > board.length) {
 			System.out.println("Outside column range");
 		} else {
 			assignment = a;
 			if (a >= 0) {
 				board[row][a] = 1; // 1 means occupied
 			} else {
-				for (int i = 0; i < 8; i++) {
+				for (int i = 0; i < board[0].length; i++) {
 					board[row][i] = 0;
 				}
 			}
 		}
 	}
-	
-	public int[][] getBoard(){
-		return board;
+
+	public int nQueen() {
+		return nQueen;
+	}
+
+	public int maxQueen() {
+		return maxQueen;
 	}
 	
+	public int[][] getBoard() {
+		return board;
+	}
+
 	public int getRow() {
 		return row;
 	}
-	
+
 	@Override
 	public String name() {
 		return "Chess at row; " + row;
 	}
-	
+
 	public String toString() {
 		String chessboard = "";
-		for(int i = 0; i < 8; i++) {
-			for(int j = 0; j < 8; j++) {
-				if(board[i][j] == 1) {
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board.length; j++) {
+				if (board[i][j] == 1) {
 					chessboard += "Q";
 				} else {
 					chessboard += "*";
@@ -161,8 +180,7 @@ class QueenVariable extends Variable {
 			chessboard += "\n";
 		}
 		return chessboard;
-		
+
 	}
-	
 
 }
