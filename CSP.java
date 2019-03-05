@@ -1,44 +1,54 @@
+
+/*
+ * CSC 242 Project 2: Constraint Satisfaction
+ * Group members: Linzan Ye, Matthew Taruno
+ * NetID: lye11, mtaruno
+ */
+
 import java.util.*;
 
+// Abstract class for all CSP problems
 public abstract class CSP {
-	protected ArrayList<Variable> var;
-	protected ArrayList<Constraint> constraints;
-	protected Relation rel;
-	protected String problem;
+	protected ArrayList<Variable> var; // List of variables involved in the CSP
+	protected ArrayList<Constraint> constraints; // List of constraints involved in the CSP
+	protected Relation rel; // The specific relation involved in the specific CSP
+	protected String problem; // The name for the specific CSP problem
 
-	public boolean isComplete() {
-		for (Variable v : var) {
-			if (v.assignment() < 0) {
-				return false;
+	public boolean isComplete() { // Check if the assignment is complete
+		for (Variable v : var) { // Loop through all the variables:
+			if (v.assignment() < 0) { // If one assignment is smaller than 0,
+				return false; // there is at least one unassigned variable
+			}
+		}
+		return true; // Or the assignment is complete
+	}
+
+	public boolean isConsistent() { // Check if the assignment is consistent
+		for (Constraint c : constraints) { // Loop through all the constraints
+			if (!c.satisfied()) { // If not satisfied
+				return false; // There is an inconsistency detected.
 			}
 		}
 		return true;
 	}
 
-	public boolean isConsistent() {
-		for (Constraint c : constraints) {
-			if (!c.satisfied()) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	public ArrayList<Variable> var() {
+	public ArrayList<Variable> var() { // Return the list of variables involved
 		return var;
 	}
 
-	public String problem() {
+	public String problem() { // Return the name of the CSP problem
 		return "";
 	}
-	
-	public String toString() {
+
+	public String toString() { // toString method to return the answer for the CSP
 		return "";
 	}
 }
 
+// Implementation for Australia Map Coloring problem
 class AusCSP extends CSP {
 
+	// Variables: states of Australia
 	AusVariable WA = new AusVariable("WA");
 	AusVariable NT = new AusVariable("NT");
 	AusVariable NSW = new AusVariable("NSW");
@@ -47,6 +57,9 @@ class AusCSP extends CSP {
 	AusVariable T = new AusVariable("T");
 	AusVariable V = new AusVariable("V");
 
+	// Create arrays which specifies the specific scope of variables involved in a
+	// constraint
+	// All binary constraints
 	Variable[] v0 = { WA, SA };
 	Variable[] v1 = { WA, NT };
 	Variable[] v2 = { NT, SA };
@@ -57,7 +70,9 @@ class AusCSP extends CSP {
 	Variable[] v7 = { Q, NSW };
 	Variable[] v8 = { NSW, V };
 
+	// Constructor
 	public AusCSP() {
+		// Initialize the set of variables
 		var = new ArrayList<Variable>();
 		var.add(WA);
 		var.add(NT);
@@ -82,11 +97,11 @@ class AusCSP extends CSP {
 		constraints.add(new Constraint(rel, v8));
 	}
 
-	@Override 
+	@Override
 	public String problem() {
 		return "Australia Map Coloring problem";
 	}
-	
+
 	@Override
 	public String toString() {
 		String answer = "Answer: \n";
@@ -174,11 +189,11 @@ class JobCSP extends CSP {
 
 	}
 
-	@Override 
+	@Override
 	public String problem() {
 		return "Job Shop Scheduling problem";
 	}
-	
+
 	@Override
 	public String toString() {
 		String answer = "Answer: \n";
@@ -192,7 +207,7 @@ class JobCSP extends CSP {
 }
 
 class QueenCSP extends CSP {
-	
+
 	QueenVariable q1 = new QueenVariable(0);
 	QueenVariable q2 = new QueenVariable(1);
 	QueenVariable q3 = new QueenVariable(2);
@@ -201,10 +216,9 @@ class QueenCSP extends CSP {
 	QueenVariable q6 = new QueenVariable(5);
 	QueenVariable q7 = new QueenVariable(6);
 	QueenVariable q8 = new QueenVariable(7);
-	
-	
+
 	public QueenCSP() {
-		
+
 		var = new ArrayList<Variable>();
 		var.add(q1);
 		var.add(q2);
@@ -214,37 +228,36 @@ class QueenCSP extends CSP {
 		var.add(q6);
 		var.add(q7);
 		var.add(q8);
-		
-		Variable[] v1 = {q1};
-		Variable[] v2 = {q2};
-		Variable[] v3 = {q3};
-		Variable[] v4 = {q4};
-		Variable[] v5 = {q5};
-		Variable[] v6 = {q6};
-		Variable[] v7 = {q7};
-		Variable[] v8 = {q8};
-		
-		
+
+		Variable[] v1 = { q1 };
+		Variable[] v2 = { q2 };
+		Variable[] v3 = { q3 };
+		Variable[] v4 = { q4 };
+		Variable[] v5 = { q5 };
+		Variable[] v6 = { q6 };
+		Variable[] v7 = { q7 };
+		Variable[] v8 = { q8 };
+
 		rel = new QRelation();
-		
+
 		constraints = new ArrayList<Constraint>();
-		
-		constraints.add(new Constraint(rel,v1));
-		constraints.add(new Constraint(rel,v2));
-		constraints.add(new Constraint(rel,v3));
-		constraints.add(new Constraint(rel,v4));
-		constraints.add(new Constraint(rel,v5));
-		constraints.add(new Constraint(rel,v6));
-		constraints.add(new Constraint(rel,v7));
-		constraints.add(new Constraint(rel,v8));	
-		
+
+		constraints.add(new Constraint(rel, v1));
+		constraints.add(new Constraint(rel, v2));
+		constraints.add(new Constraint(rel, v3));
+		constraints.add(new Constraint(rel, v4));
+		constraints.add(new Constraint(rel, v5));
+		constraints.add(new Constraint(rel, v6));
+		constraints.add(new Constraint(rel, v7));
+		constraints.add(new Constraint(rel, v8));
+
 	}
-	
-	@Override 
+
+	@Override
 	public String problem() {
-		return "Australia Map Coloring problem";
+		return "n-Queens problem";
 	}
-	
+
 	@Override
 	public String toString() {
 		return q1.toString();

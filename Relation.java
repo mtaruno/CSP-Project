@@ -1,3 +1,9 @@
+/*
+ * CSC 242 Project 2: Constraint Satisfaction
+ * Group members: Linzan Ye, Matthew Taruno
+ * NetID: lye11, mtaruno
+ */
+
 import java.util.*;
 
 public abstract class Relation {
