@@ -129,5 +129,22 @@ class QueenVariable extends Variable {
 	public int getRow() {
 		return row;
 	}
+	
+	public String toString() {
+		String chessboard = "";
+		for(int i = 0; i < 8; i++) {
+			for(int j = 0; j < 8; j++) {
+				if(board[i][j] == 1) {
+					chessboard += "Q";
+				} else {
+					chessboard += "*";
+				}
+				chessboard += " ";
+			}
+			chessboard += "\n";
+		}
+		return chessboard;
+		
+	}
 
 }

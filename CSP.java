@@ -177,16 +177,57 @@ class JobCSP extends CSP {
 }
 
 class QueenCSP extends CSP {
+	
+	QueenVariable q1 = new QueenVariable(0);
+	QueenVariable q2 = new QueenVariable(1);
+	QueenVariable q3 = new QueenVariable(2);
+	QueenVariable q4 = new QueenVariable(3);
+	QueenVariable q5 = new QueenVariable(4);
+	QueenVariable q6 = new QueenVariable(5);
+	QueenVariable q7 = new QueenVariable(6);
+	QueenVariable q8 = new QueenVariable(7);
+	
+	
+	public QueenCSP() {
+		
+		var = new ArrayList<Variable>();
+		var.add(q1);
+		var.add(q2);
+		var.add(q3);
+		var.add(q4);
+		var.add(q5);
+		var.add(q6);
+		var.add(q7);
+		var.add(q8);
+		
+		Variable[] v1 = {q1};
+		Variable[] v2 = {q2};
+		Variable[] v3 = {q3};
+		Variable[] v4 = {q4};
+		Variable[] v5 = {q5};
+		Variable[] v6 = {q6};
+		Variable[] v7 = {q7};
+		Variable[] v8 = {q8};
+		
+		
+		rel = new QRelation();
+		
+		constraints = new ArrayList<Constraint>();
+		
+		constraints.add(new Constraint(rel,v1));
+		constraints.add(new Constraint(rel,v2));
+		constraints.add(new Constraint(rel,v3));
+		constraints.add(new Constraint(rel,v4));
+		constraints.add(new Constraint(rel,v5));
+		constraints.add(new Constraint(rel,v6));
+		constraints.add(new Constraint(rel,v7));
+		constraints.add(new Constraint(rel,v8));	
+		
+	}
+	
+	@Override
+	public String toString() {
+		return q1.toString();
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
