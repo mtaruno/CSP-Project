@@ -118,7 +118,14 @@ class QueenVariable extends Variable {
 			System.out.println("Outside column range");
 		} else {
 			assignment = a;
-			board[row][a] = 1; // 1 means occupied
+			if (a >= 0) {
+				board[row][a] = 1; // 1 means occupied
+			} else {
+				System.out.println("Remove all values assigned at row " + row);
+				for (int i = 0; i < 8; i++) {
+					board[row][i] = 0;
+				}
+			}
 		}
 	}
 	
@@ -128,6 +135,11 @@ class QueenVariable extends Variable {
 	
 	public int getRow() {
 		return row;
+	}
+	
+	@Override
+	public String name() {
+		return "Chess at row; " + row;
 	}
 	
 	public String toString() {
@@ -146,5 +158,6 @@ class QueenVariable extends Variable {
 		return chessboard;
 		
 	}
+	
 
 }

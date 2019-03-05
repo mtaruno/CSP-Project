@@ -55,13 +55,11 @@ class QRelation extends Relation {
 		int counter = 0;
 		// Vertical check
 		for (int i = 0; i < 8; i++) {
-			if(queen.assignment > 0) {
+			if(queen.assignment >= 0) {
 				if (board[i][queen.assignment()] == 1) {
 					counter += 1;
 					if (counter != 1) {
 						return false;
-					} else {
-						System.out.println("Qs at column " + queen.assignment() + " is " + counter);
 					}
 				}
 			}

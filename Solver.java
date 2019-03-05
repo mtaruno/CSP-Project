@@ -10,6 +10,33 @@ public class Solver {
 		}
 	}
 	
+	public boolean AC3(CSP csp) {
+		Queue<Constraint> q = new LinkedList<>();
+		for (Constraint c : csp.constraints) {
+			q.add(c);
+		}
+		Constraint c;
+		while (!q.isEmpty()) {
+			c = q.remove();
+
+		}
+		return false;
+	}
+
+	public boolean revised(Constraint c, Variable v1, Variable v2) {
+		boolean revised = false;
+		
+		ArrayList<Integer> dom1 = new ArrayList<Integer>();
+		
+		for (int i = 0; i < v1.domain().size(); i++) {
+			dom1.add(v1.domain().get(i));
+		}
+		
+		v1.assign(-1);
+		v2.assign(-1);
+		return revised;
+	}
+	
 	public boolean backTracking(CSP csp) {
 		
 		// Base case:
@@ -22,19 +49,23 @@ public class Solver {
 		System.out.println("Checking " + v.name() + ", stack size: " + stack.size());
 		
 		for (int temp : v.domain()) {
-			System.out.println("Assigned " + temp);
+			System.out.println("Assigned " + v.name() + " with " + temp);
 			v.assign(temp);
 			
 			if (csp.isConsistent()) {
 				boolean a = backTracking(csp);
 				if (a) {
 					return true;
+				} else {
+					v.assign(-1);
 				}
 			} else {
+				System.out.println("Assigned " + v.name() + " with " + temp);
 				v.assign(-1); // Remove the assignment
 				
 			}
 		}
+		System.out.println("Backtracked with " + v.name());
 		stack.push(v); // If backtrack, add the variable back to the stack
 		return false; // Failure
 	}
