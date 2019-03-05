@@ -89,7 +89,7 @@ class QRelation extends Relation {
 		// Reset counter
 		counter = 0;
 
-		// Descending diagonal check
+		// Descending diagonal check 1
 		try { // Use try catch to visit all the directions of the board until out of array
 				// bound
 			int row = queen.getRow(); // From the specific row the give chess stays.
@@ -97,7 +97,7 @@ class QRelation extends Relation {
 
 			while (true) {
 
-				if (board[row][column] == 1) {
+				if (board[row][column] == 1) { // Scan through the diagonal
 					counter += 1;
 					if (counter > 1) {
 						return false;
@@ -107,9 +107,11 @@ class QRelation extends Relation {
 				column++;
 			}
 
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException e) { // Exit when reaching the end of array
 		}
-		counter = 0;
+		counter = 0; // Reset
+		
+		// Descending diagonal check 2, since the chess may be in the middle of a diagonal
 		try {
 			int row = queen.getRow();
 			int column = queen.assignment();
@@ -127,8 +129,9 @@ class QRelation extends Relation {
 		} catch (ArrayIndexOutOfBoundsException e) {
 		}
 
-		counter = 0;
+		counter = 0; // Reset
 
+		// Ascending diagonal check 1
 		try {
 			int row = queen.getRow();
 			int column = queen.assignment();
@@ -150,6 +153,7 @@ class QRelation extends Relation {
 
 		counter = 0;
 
+		// Ascending diagonal check 2
 		try {
 			int row = queen.getRow();
 			int column = queen.assignment();
@@ -168,10 +172,11 @@ class QRelation extends Relation {
 		} catch (ArrayIndexOutOfBoundsException e) {
 		}
 
-		// Vertical check not needed
-		// Down Diagonal check
-		// Up Diagonal check
-
+		// Vertical check not needed since we structured the domain as 
+		// the position of column which the chess is assigned
+		// Initially, each chess occupies each of the row on the board
+		
+		// If passed all the tests, return true
 		return true;
 	}
 

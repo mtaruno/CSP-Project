@@ -13,8 +13,8 @@ public class CSPApplication {
 		// Australia Map Coloring problem
 		AusCSP aus = new AusCSP();
 		Solver solve1 = new Solver(aus);
-		if (!solve1.backTracking(aus)) {
-			System.out.println("No possible solution can be found.");
+		if (!solve1.backTracking(aus)) { // Print out solution if there is a solution
+			System.out.println("No possible solution can be found."); // Else, print no possible solution can be found
 		}
 		System.out.println(aus.toString());
 

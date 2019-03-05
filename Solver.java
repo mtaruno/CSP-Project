@@ -58,33 +58,4 @@ public class Solver {
 						// consistency.
 		return false; // Failure
 	}
-
-	// Under construction (UC)
-	public boolean AC3(CSP csp) {
-		Queue<Constraint> q = new LinkedList<>();
-		for (Constraint c : csp.constraints) {
-			q.add(c);
-		}
-		Constraint c;
-		while (!q.isEmpty()) {
-			c = q.remove();
-
-		}
-		return false;
-	}
-
-	// UC
-	public boolean revised(Constraint c, Variable v1, Variable v2) {
-		boolean revised = false;
-
-		ArrayList<Integer> dom1 = new ArrayList<Integer>();
-
-		for (int i = 0; i < v1.domain().size(); i++) {
-			dom1.add(v1.domain().get(i));
-		}
-
-		v1.assign(-1);
-		v2.assign(-1);
-		return revised;
-	}
 }

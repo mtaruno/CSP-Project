@@ -212,6 +212,7 @@ class JobCSP extends CSP {
 	public String toString() {
 		String answer = "Answer: \n";
 		String time = "";
+		answer += "Inspect after the following tasks have been completed\n";
 		for (Variable v : var) {
 			time = Integer.toString(v.assignment());
 			answer += v.name() + ": " + time + "\n";
@@ -226,8 +227,7 @@ class QueenCSP extends CSP {
 	private int nQueen = 0; // Number of queens involved in the problem
 							// Given by user input
 	private QueenVariable queen; // Queen variable
-	
-	
+
 	// Counstructor
 	public QueenCSP() {
 
@@ -244,7 +244,7 @@ class QueenCSP extends CSP {
 			sc.close();
 			return;
 		}
-		
+
 		// Create 2D array scope to store all the involved scopes in a big array.
 		Variable[][] scope = new Variable[nQueen][1]; // To satisfy the parameter of constraint method
 		rel = new QRelation(); // Initialize relation. In this case the only relation involved is QRelation
@@ -252,12 +252,12 @@ class QueenCSP extends CSP {
 		// In our implementation, there are only unary constraints
 
 		// Add variables and constraints until it reaches the given number of queens
-		
+
 		for (int i = 0; i < nQueen; i++) {
 			queen = new QueenVariable(i, nQueen); // Create queen objects
-			var.add(queen);
-			scope[i][0] = queen;
-			constraints.add(new Constraint(rel, scope[i]));
+			var.add(queen); // Add queens to the variable set
+			scope[i][0] = queen; // Initialize scope of the queens
+			constraints.add(new Constraint(rel, scope[i])); // Add constraints to the constraint set
 		}
 
 		sc.close();
@@ -265,7 +265,7 @@ class QueenCSP extends CSP {
 	}
 
 	@Override
-	public String problem() { // UC
+	public String problem() {
 		if (nQueen > maxQueen) {
 			return "Error number of queens";
 		}
