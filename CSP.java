@@ -74,6 +74,7 @@ class AusCSP extends CSP {
 	public AusCSP() {
 		// Initialize the set of variables
 		var = new ArrayList<Variable>();
+		// Add variables to the set
 		var.add(WA);
 		var.add(NT);
 		var.add(Q);
@@ -82,10 +83,13 @@ class AusCSP extends CSP {
 		var.add(T);
 		var.add(V);
 
-		rel = new AusRelation();
+		// Initialize the relation
+		rel = new AusRelation(); // In this case, the AusRelation is the only relation wanted.
 
+		// Initialize the constraint set
 		constraints = new ArrayList<Constraint>();
 
+		// Add the scopes of variables and relation to the constraint set
 		constraints.add(new Constraint(rel, v0));
 		constraints.add(new Constraint(rel, v1));
 		constraints.add(new Constraint(rel, v2));
@@ -98,7 +102,7 @@ class AusCSP extends CSP {
 	}
 
 	@Override
-	public String problem() {
+	public String problem() { // Return the name of the problem
 		return "Australia Map Coloring problem";
 	}
 
