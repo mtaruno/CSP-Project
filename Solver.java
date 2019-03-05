@@ -46,10 +46,8 @@ public class Solver {
 		} 
 
 		Variable v = stack.pop(); // Select one unassigned variable.
-		System.out.println("Checking " + v.name() + ", stack size: " + stack.size());
 		
 		for (int temp : v.domain()) {
-			System.out.println("Assigned " + v.name() + " with " + temp);
 			v.assign(temp);
 			
 			if (csp.isConsistent()) {
@@ -60,12 +58,10 @@ public class Solver {
 					v.assign(-1);
 				}
 			} else {
-				System.out.println("Assigned " + v.name() + " with " + temp);
 				v.assign(-1); // Remove the assignment
 				
 			}
 		}
-		System.out.println("Backtracked with " + v.name());
 		stack.push(v); // If backtrack, add the variable back to the stack
 		return false; // Failure
 	}

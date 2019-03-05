@@ -16,6 +16,8 @@ public class CSPApplication {
 		solve2.backTracking(job);
 		System.out.println(job.toString());
 		
+		System.out.println("\n\n\n");
+		
 		QueenCSP queen = new QueenCSP();
 		Solver solve3 = new Solver(queen);
 		solve3.backTracking(queen);

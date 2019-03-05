@@ -4,6 +4,7 @@ public abstract class CSP {
 	protected ArrayList<Variable> var;
 	protected ArrayList<Constraint> constraints;
 	protected Relation rel;
+	protected String problem;
 
 	public boolean isComplete() {
 		for (Variable v : var) {
@@ -27,6 +28,10 @@ public abstract class CSP {
 		return var;
 	}
 
+	public String problem() {
+		return "";
+	}
+	
 	public String toString() {
 		return "";
 	}
@@ -77,6 +82,11 @@ class AusCSP extends CSP {
 		constraints.add(new Constraint(rel, v8));
 	}
 
+	@Override 
+	public String problem() {
+		return "Australia Map Coloring problem";
+	}
+	
 	@Override
 	public String toString() {
 		String answer = "Answer: \n";
@@ -164,6 +174,11 @@ class JobCSP extends CSP {
 
 	}
 
+	@Override 
+	public String problem() {
+		return "Job Shop Scheduling problem";
+	}
+	
 	@Override
 	public String toString() {
 		String answer = "Answer: \n";
@@ -223,6 +238,11 @@ class QueenCSP extends CSP {
 		constraints.add(new Constraint(rel,v7));
 		constraints.add(new Constraint(rel,v8));	
 		
+	}
+	
+	@Override 
+	public String problem() {
+		return "Australia Map Coloring problem";
 	}
 	
 	@Override

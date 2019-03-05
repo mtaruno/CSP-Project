@@ -121,7 +121,6 @@ class QueenVariable extends Variable {
 			if (a >= 0) {
 				board[row][a] = 1; // 1 means occupied
 			} else {
-				System.out.println("Remove all values assigned at row " + row);
 				for (int i = 0; i < 8; i++) {
 					board[row][i] = 0;
 				}
