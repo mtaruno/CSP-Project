@@ -22,6 +22,7 @@ public class Solver {
 		System.out.println("Checking " + v.name() + ", stack size: " + stack.size());
 		
 		for (int temp : v.domain()) {
+			System.out.println("Assigned " + temp);
 			v.assign(temp);
 			
 			if (csp.isConsistent()) {

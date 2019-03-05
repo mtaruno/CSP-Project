@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class Constraint {
-	Variable[] scope;
-	Relation rel;
+	protected Variable[] scope;
+	protected Relation rel;
 	
 	public Constraint(Relation r, Variable[] sc) {
 		rel = r;
