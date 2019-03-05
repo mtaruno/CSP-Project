@@ -13,7 +13,8 @@ public class Constraint {
 	protected Relation rel; // Specific relation for this constraint
 
 	// Constructor
-	public Constraint(Relation r, Variable[] sc) {
+	public Constraint(Relation r, Variable[] sc) { // Takes a specific type of relation and a scope of variables
+													// involved
 		rel = r;
 		scope = sc;
 	}

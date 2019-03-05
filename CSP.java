@@ -107,7 +107,7 @@ class AusCSP extends CSP {
 	}
 
 	@Override
-	public String toString() {
+	public String toString() { // toSting method for answer
 		String answer = "Answer: \n";
 		String color = "";
 		for (Variable v : var) {
@@ -125,6 +125,7 @@ class AusCSP extends CSP {
 
 class JobCSP extends CSP {
 
+	// Variables for Job Shop Scheduling problem
 	JobVariable AF = new JobVariable(0, 0);
 	JobVariable AB = new JobVariable(0, 1);
 	JobVariable WLF = new JobVariable(1, 2);
@@ -141,6 +142,7 @@ class JobCSP extends CSP {
 	JobVariable CRB = new JobVariable(3, 5);
 	JobVariable Ins = new JobVariable(4, 6);
 
+	// Scopes
 	Variable[] p0 = { AF, WRF };
 	Variable[] p1 = { AF, WLF };
 	Variable[] p2 = { AB, WRB };
@@ -155,7 +157,9 @@ class JobCSP extends CSP {
 	Variable[] p11 = { NLB, CLB };
 	Variable[] d0 = { AF, AB };
 
+	// Constrctor
 	public JobCSP() {
+		// Initialize set of variables
 		var = new ArrayList<Variable>();
 		var.add(CRB);
 		var.add(CRF);
@@ -172,11 +176,17 @@ class JobCSP extends CSP {
 		var.add(AB);
 		var.add(AF);
 
+		// Initialize relation
 		rel = new PConstraint();
+
+		// There is an additional type of relation involved in this CSP.
+		// Thus creating a new relation object there
 		Relation rel2 = new DConstraint();
 
+		// Initialize constraint set
 		constraints = new ArrayList<Constraint>();
 
+		// Add constraints to the set
 		constraints.add(new Constraint(rel, p0));
 		constraints.add(new Constraint(rel, p1));
 		constraints.add(new Constraint(rel, p2));
@@ -210,6 +220,7 @@ class JobCSP extends CSP {
 	}
 }
 
+// 8-queen
 class QueenCSP extends CSP {
 
 	QueenVariable q1 = new QueenVariable(0);
@@ -221,44 +232,48 @@ class QueenCSP extends CSP {
 	QueenVariable q7 = new QueenVariable(6);
 	QueenVariable q8 = new QueenVariable(7);
 
+	ArrayList<QueenVariable> qCount; // ArrayList to store number of queens according to the specificed n-queen
+										// problem
+
 	public QueenCSP() {
 
+		qCount = new ArrayList<QueenVariable>();
+		qCount.add(q1);
+		qCount.add(q2);
+		qCount.add(q3);
+		qCount.add(q4);
+		qCount.add(q5);
+		qCount.add(q6);
+		qCount.add(q7);
+		qCount.add(q8);
+
 		var = new ArrayList<Variable>();
-		var.add(q1);
-		var.add(q2);
-		var.add(q3);
-		var.add(q4);
-		var.add(q5);
-		var.add(q6);
-		var.add(q7);
-		var.add(q8);
 
-		Variable[] v1 = { q1 };
-		Variable[] v2 = { q2 };
-		Variable[] v3 = { q3 };
-		Variable[] v4 = { q4 };
-		Variable[] v5 = { q5 };
-		Variable[] v6 = { q6 };
-		Variable[] v7 = { q7 };
-		Variable[] v8 = { q8 };
-
+		Scanner sc = new Scanner(System.in); // Get input for n-queen problem
+		System.out.println("How many queens do you want for the n-queen problem?");
+		int n = sc.nextInt();
+		if (n > 8) {
+			System.out.println("Error choosing number of queens!");
+			sc.close();
+			return;
+		}
+		
+		Variable[][] scope = new Variable[8][1];  // To satisfy the parameter of constraint method
 		rel = new QRelation();
-
 		constraints = new ArrayList<Constraint>();
-
-		constraints.add(new Constraint(rel, v1));
-		constraints.add(new Constraint(rel, v2));
-		constraints.add(new Constraint(rel, v3));
-		constraints.add(new Constraint(rel, v4));
-		constraints.add(new Constraint(rel, v5));
-		constraints.add(new Constraint(rel, v6));
-		constraints.add(new Constraint(rel, v7));
-		constraints.add(new Constraint(rel, v8));
+		
+		for (int i = 0; i < n; i++) {
+			var.add(qCount.get(i));
+			scope[i][0] = qCount.get(i);
+			constraints.add(new Constraint(rel, scope[i]));
+		}
+		
+		sc.close();
 
 	}
 
 	@Override
-	public String problem() {
+	public String problem() { // UC
 		return "n-Queens problem";
 	}
 

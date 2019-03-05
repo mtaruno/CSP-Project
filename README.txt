@@ -1,10 +1,10 @@
-Name: Matthew Evan Taruno
-UserID: mtaruno
-Email: mtaruno@u.rochester.edu
+Name: Linzan Ye
+NetID: lye11
+Email: lye11@u.rochester.edu
 Date: March 4, 2019
 
-Collaboration: Linzan Ye
-NetID: lye11
+Collaboration: Mathew Taruno
+NetID: mtaruno
 
 HOW TO BUILD THIS PROJECT
 
