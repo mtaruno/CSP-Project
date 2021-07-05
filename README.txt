@@ -1,10 +1,4 @@
-Name: Linzan Ye
-NetID: lye11
-Email: lye11@u.rochester.edu
 Date: March 4, 2019
-
-Collaboration: Mathew Taruno
-NetID: mtaruno
 
 HOW TO BUILD THIS PROJECT
 
